@@ -63,7 +63,7 @@ const WalletWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${(props) => props.theme.bgDiv};
-  padding: 0 9px;
+  padding: 5px 9px;
   height: 100%;
   color: ${(props) => props.theme.color};
   border-radius: 10px;
@@ -71,6 +71,7 @@ const WalletWrapper = styled.div`
   font-weight: bold;
   font-size: small;
   font-family: "Roboto";
+  cursor: pointer;
 `;
 
 const Address = styled.h2`
@@ -88,5 +89,5 @@ const Balance = styled.h2`
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  margin-right: 10px;
+  margin-right: 5px;
 `;

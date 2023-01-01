@@ -18,14 +18,14 @@ contract CampaignFactory {
         string memory campaignTitle,
         uint256 campaignRequiredAmount,
         string memory imageURI,
-        string memory storyURI,
+        string memory description,
         string memory campaignCategory
     ) public {
         Campaign newCampaign = new Campaign(
             campaignTitle,
             campaignRequiredAmount,
             imageURI,
-            storyURI,
+            description,
             campaignCategory
         );
         deployedCampaign.push(address(newCampaign));
@@ -60,13 +60,13 @@ contract Campaign {
         string memory campaignTitle,
         uint256 campaignRequiredAmount,
         string memory imageURI,
-        string memory storyURI,
+        string memory description,
         string memory campaignCategory
     ) {
         title = campaignTitle;
         requiredAmount = campaignRequiredAmount;
         image = imageURI;
-        story = storyURI;
+        story = description;
         category = campaignCategory;
         owner = payable(msg.sender);
     }

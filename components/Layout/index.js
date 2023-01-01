@@ -1,5 +1,7 @@
 import React, { useState, createContext } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from "../Header";
 import themes from "./themes";
 
@@ -14,6 +16,7 @@ const Layout = ({ children }) => {
   return (
     <App.Provider value={{ changeTheme, theme }}>
       <ThemeProvider theme={themes[theme]}>
+        <ToastContainer />
         <LayoutWrapper>
           <GlobalStyle />
           <Header />
@@ -29,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
   }
 `;
 
