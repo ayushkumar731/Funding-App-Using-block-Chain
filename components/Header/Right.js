@@ -3,12 +3,14 @@ import styled from "styled-components";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { App } from "../Layout";
+import Wallet from '../Wallet';
 
 const Right = () => {
   const ThemeToggler = useContext(App);
 
   return (
     <RightWrapper>
+      <Wallet />
       <ThemeToggle>
         {ThemeToggler.theme === 'light' ? <DarkModeIcon onClick={ThemeToggler.changeTheme} /> : <Brightness7Icon onClick={ThemeToggler.changeTheme} />}
       </ThemeToggle>
