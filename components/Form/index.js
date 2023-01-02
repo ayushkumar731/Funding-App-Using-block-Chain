@@ -63,7 +63,7 @@ const Form = () => {
     );
 
     await campaignData.wait();
-
+      console.log(campaignData, 'campaignData')
     setAddress(campaignData.to);
   };
 

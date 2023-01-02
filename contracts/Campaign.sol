@@ -6,17 +6,17 @@ contract CampaignFactory {
     address[] public deployedCampaign;
     event campaignCreated(
         string title,
-        uint256 requiredAmount,
+        uint requiredAmount,
         address indexed owner,
         address campaignAddress,
         string imageURI,
-        uint256 indexed timestamp,
+        uint indexed timestamp,
         string indexed category
     );
 
     function createCampaign(
         string memory campaignTitle,
-        uint256 campaignRequiredAmount,
+        uint campaignRequiredAmount,
         string memory imageURI,
         string memory description,
         string memory campaignCategory
@@ -26,7 +26,8 @@ contract CampaignFactory {
             campaignRequiredAmount,
             imageURI,
             description,
-            campaignCategory
+            campaignCategory,
+            msg.sender
         );
         deployedCampaign.push(address(newCampaign));
 
@@ -45,34 +46,35 @@ contract CampaignFactory {
 contract Campaign {
     event donated(
         address indexed donar,
-        uint256 indexed amount,
-        uint256 indexed timeStamp
+        uint indexed amount,
+        uint indexed timeStamp
     );
     string public title;
-    uint256 public requiredAmount;
+    uint public requiredAmount;
     string public image;
     string public story;
     string public category;
     address payable public owner;
-    uint256 public receivedAmount;
+    uint public receivedAmount;
 
     constructor(
         string memory campaignTitle,
-        uint256 campaignRequiredAmount,
+        uint campaignRequiredAmount,
         string memory imageURI,
         string memory description,
-        string memory campaignCategory
+        string memory campaignCategory,
+        address campaignOwnerAddress
     ) {
         title = campaignTitle;
         requiredAmount = campaignRequiredAmount;
         image = imageURI;
         story = description;
         category = campaignCategory;
-        owner = payable(msg.sender);
+        owner = payable(campaignOwnerAddress);
     }
 
     function donate() public payable {
-        require(owner != msg.sender, "You can't donate for own capaign");
+        // require(owner != msg.sender, "You can't donate for own capaign");
         require(requiredAmount > receivedAmount, "Required Amount Fullfilled");
 
         owner.transfer(msg.value);
